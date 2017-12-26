@@ -1,0 +1,9 @@
+{
+  "name": "robo-test",
+  "version": "0.0.1",
+  "description": "Search books",
+  "main": "index.js",
+  "repository": "https://github.com/alekseyBatuhtin/robo_test.git",
+  "author": "Alexey Batuhtin",
+  "license": "MIT"
+}
