@@ -6,6 +6,10 @@
   "repository": "https://github.com/alekseyBatuhtin/robo_test.git",
   "author": "Alexey Batuhtin",
   "license": "MIT",
+  "scripts": {
+    "start": "node node_modules/.bin/webpack-dev-server --config webpack/webpack.config.js",
+    "build:dist": "NODE_ENV=development webpack --config webpack/webpack.config.js"
+  },
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
