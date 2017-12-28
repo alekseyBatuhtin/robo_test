@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const rootDir = path.resolve(`${__dirname}/..`);
+const apiUrl = 'https://www.googleapis.com';
 
 const config = {
   cache: true,
@@ -80,7 +81,10 @@ const config = {
     inline: true,
     historyApiFallback: true,
     proxy: {
-      /* add google books api */
+      '/books/v1/volumes': {
+        target: apiUrl,
+        changeOrigin: true
+      }
     }
   }
 };
