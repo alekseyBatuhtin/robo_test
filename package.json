@@ -11,6 +11,7 @@
     "build:dist": "NODE_ENV=development webpack --config webpack/webpack.config.js"
   },
   "dependencies": {
+    "material-ui": "^1.0.0-beta.25",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -19,7 +20,9 @@
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "switch-fn": "^1.0.2",
+    "typeface-roboto": "^0.0.45"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -51,6 +54,7 @@
     "html-webpack-plugin": "^2.30.1",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.9",
     "prettier": "^1.9.2",
     "script-loader": "^0.7.2",
     "style-loader": "^0.19.1",
