@@ -1,15 +1,12 @@
 {
-    "presets": ["es2015", "stage-0", "react"],
-    "plugins": [
-      "transform-runtime",
-      ["lodash", { "id": ["lodash", "recompose"] }]
-    ],
+  "plugins": [
+    "transform-runtime",
+    ["lodash", { "id": ["lodash", "recompose", "material-ui"] }]
+  ],
+  "presets": ["es2015", "stage-0", "react"],
     "env": {
       "development": {
         "presets": ["react-hmre"]
-      },
-      "test": {
-        "plugins": ["dynamic-import-node"]
       }
     }
   }
