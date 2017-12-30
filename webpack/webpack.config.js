@@ -3,7 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const rootDir = path.resolve(`${__dirname}/..`);
-const apiUrl = 'https://www.googleapis.com';
+const bookApiUrl = 'https://www.googleapis.com';
+const searchApiUrl = 'http://suggestqueries.google.com';
 
 const config = {
   cache: true,
@@ -82,7 +83,11 @@ const config = {
     historyApiFallback: true,
     proxy: {
       '/books/v1/volumes': {
-        target: apiUrl,
+        target: bookApiUrl,
+        changeOrigin: true
+      },
+      '/complete/search': {
+        target: searchApiUrl,
         changeOrigin: true
       }
     }
