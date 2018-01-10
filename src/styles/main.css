@@ -1,0 +1,28 @@
+
+html, body {
+    font-size: 14px;
+    height: 100%;
+}
+
+body {
+    font-family: "Roboto", sans;
+    background: #eceff4;
+    color: #514d6a;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+a {
+    color: #827ca1;
+    -webkit-transition: all 0.05s ease-in-out;
+    -o-transition: all 0.05s ease-in-out;
+    transition: all 0.05s ease-in-out;
+}
+
+a:hover, a:focus {
+    color: #0088ff;
+    text-decoration: none;
+    -webkit-transition: all 0.05s ease-in-out;
+    -o-transition: all 0.05s ease-in-out;
+    transition: all 0.05s ease-in-out;
+}
