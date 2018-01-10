@@ -1,40 +1,31 @@
 import superagent from 'superagent';
 import switchFn from 'switch-fn';
-import apiKey from './apiKey';
 
 import { GET_BOOK_LIST } from '../book/actions';
 import { GET_SUGGESTIONS } from '../suggestions/actions';
 
-function withHeader(req) {
-  req = req.query({ ...apiKey });
+const API_KEY = 'AIzaSyBdgFgmTO_2OL-mJNyxE37UfjyGj_KeM3A';
+
+function withHeader(req, apiKey) {
+  req = req.query({ apiKey });
 
   return req;
 }
 
-export const request = (url, withKey) => (withKey ? withHeader(superagent.get(url)) : superagent.get(url));
+export const request = (url, withKey) => (withKey ? withHeader(superagent.get(url), API_KEY) : superagent.get(url));
 
 const RestClient = () => {
-  const convertRESTRequestToHTTP = (type, params) => {
+  const convertRESTRequestToHTTP = (type, { query }) => {
     let url = '';
     let req = {};
     switchFn({
       [GET_BOOK_LIST]() {
-        /*         const { page, perPage } = params.pagination;
-        const { field, order } = params.sort;
-        const query = {
-          ...params.filter,
-          ...params.custom,
-          _sort: field,
-          _order: order,
-          _start: (page - 1) * perPage,
-          _end: page * perPage
-        }; */
-        url = `/books/v1/volumes/?q=search+term&maxResults=40`;
+        url = `/books/v1/volumes/?q=${query}&maxResults=40`;
         req = request(url, true);
       },
 
       [GET_SUGGESTIONS]() {
-        url = `/complete/search?q=ob&client=firefox&hl=ru`;
+        url = `/complete/search?q=${query}&client=firefox&hl=ru`;
         req = request(url);
       },
       default() {
