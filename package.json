@@ -11,8 +11,10 @@
     "build:dist": "NODE_ENV=development webpack --config webpack/webpack.config.js"
   },
   "dependencies": {
+    "autosuggest-highlight": "^3.1.1",
     "material-ui": "^1.0.0-beta.25",
     "react": "^16.2.0",
+    "react-autosuggest": "^9.3.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^3",
