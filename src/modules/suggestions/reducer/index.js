@@ -4,7 +4,7 @@ import { map } from 'lodash/fp';
 
 export default createReducer([], {
   [GET_SUGGESTIONS_SUCCESS](state, { payload }) {
-    return map(suggestion => ({ label: suggestion }), payload[1]); // ["ob", ["obi 1 kenobi", "obsidian", "obey"]] need array of results
+    return map(suggestion => ({ label: suggestion }), payload[1].splice(0, 4)); // ["ob", ["obi 1 kenobi", "obsidian", "obey"]] need array of results
   },
   [CLEAR_SUGGESTIONS]() {
     return [];
