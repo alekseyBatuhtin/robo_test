@@ -50,7 +50,6 @@ const mapDispatchToProps = { getSuggestions, clearSuggestions, getBookList };
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withState('value', 'setValue', ''),
   withHandlers({
     handleChange: ({ setValue }) => (event, { newValue }) => {
       setValue(newValue);

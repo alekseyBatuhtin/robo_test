@@ -3,9 +3,9 @@ export const GET_BOOK_LIST_LOADING = 'GET_BOOK_LIST_LOADING';
 export const GET_BOOK_LIST_FAILURE = 'GET_BOOK_LIST_FAILURE';
 export const GET_BOOK_LIST_SUCCESS = 'GET_BOOK_LIST_SUCCESS';
 
-export const getBookList = (query = '') => ({
+export const getBookList = (query = '', page = 1) => ({
   type: GET_BOOK_LIST,
-  payload: { query }
+  payload: { query, page }
 });
 
 export const GET_ONE = 'GET_ONE';

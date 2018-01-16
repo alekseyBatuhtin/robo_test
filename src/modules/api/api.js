@@ -15,12 +15,12 @@ function withHeader(req, apiKey) {
 export const request = (url, withKey) => (withKey ? withHeader(superagent.get(url), API_KEY) : superagent.get(url));
 
 const RestClient = () => {
-  const convertRESTRequestToHTTP = (type, { query }) => {
+  const convertRESTRequestToHTTP = (type, { query, page = 1 }) => {
     let url = '';
     let req = {};
     switchFn({
       [GET_BOOK_LIST]() {
-        url = `/books/v1/volumes/?q=${query}&maxResults=40`;
+        url = `/books/v1/volumes/?q=${query}&maxResults=20&startIndex=${page}`;
         req = request(url, true);
       },
 

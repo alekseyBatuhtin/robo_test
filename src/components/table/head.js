@@ -6,11 +6,10 @@ import { TableCell, TableHead, TableRow } from 'material-ui';
 const BaseTableHead = () => (
   <TableHead>
     <TableRow>
-      <TableCell>{'Title'}</TableCell>
-      <TableCell>{'Subtitle'}</TableCell>
-      <TableCell>{'Author'}</TableCell>
-      <TableCell>{'Published Date'}</TableCell>
-      <TableCell>{'Language'}</TableCell>
+      <TableCell scope="col">{'Title'}</TableCell>
+      <TableCell scope="col">{'Author'}</TableCell>
+      <TableCell scope="col">{'Published Date'}</TableCell>
+      <TableCell scope="col">{'Language'}</TableCell>
     </TableRow>
   </TableHead>
 );
