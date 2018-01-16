@@ -6,13 +6,16 @@ import { TableCell, TableRow, TableBody } from 'material-ui';
 const styles = {
   root: {
     cursor: 'pointer'
+  },
+  date: {
+    whiteSpace: 'nowrap'
   }
 };
 
 const enhance = withStyles(styles);
 
 const BaseTableBody = ({ data = [], classes }) => (
-  <TableBody className={classes.tableBody}>
+  <TableBody>
     {(data.length &&
       data.map((n, index) => (
         <TableRow
@@ -23,10 +26,14 @@ const BaseTableBody = ({ data = [], classes }) => (
             console.log(n.title);
           }}
         >
-          <TableCell space="row">{n.title}</TableCell>
-          <TableCell>{(n.authors && n.authors.join(', ')) || '-'}</TableCell>
-          <TableCell>{n.publishedDate}</TableCell>
-          <TableCell>{n.language}</TableCell>
+          <TableCell data-label="Title" space="row">
+            {n.title}
+          </TableCell>
+          <TableCell data-label="Author">{(n.authors && n.authors.join(', ')) || '-'}</TableCell>
+          <TableCell data-label="Publish Date" className={classes.date}>
+            {n.publishedDate}
+          </TableCell>
+          <TableCell data-label="Language">{n.language}</TableCell>
         </TableRow>
       ))) || (
       <TableRow>

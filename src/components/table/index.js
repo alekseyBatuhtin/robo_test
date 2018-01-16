@@ -17,9 +17,60 @@ const mapStateToPRops = ({ book, book: { totalBooks } }) => ({ data: book.data.m
 const mapDisaptchToProps = { getBookList, getSuggestions };
 
 const styles = {
-  table: {},
+  table: {
+    width: '100%',
+    height: '100%',
+    display: 'block',
+    tableLayout: 'fixed',
+    borderCollapse: 'collapse',
+    position: 'relative',
+    '& tbody': {
+      display: 'block',
+      height: '500px',
+      overflowY: 'auto',
+      '& tr': {
+        display: 'table',
+        width: '100%',
+        tableLayout: 'fixed'
+      }
+    },
+    '& thead, & tfoot': {
+      display: 'table',
+      width: '100%',
+      tableLayout: 'fixed'
+    }
+  },
   '@media (max-width: 680px)': {
-    table: { border: 0 }
+    table: {
+      '& thead': {
+        border: 'none',
+        clip: 'rect(0 0 0 0)',
+        height: '1px',
+        margin: '-1px',
+        overflow: 'hidden',
+        padding: 0,
+        position: 'absolute',
+        width: '1px'
+      },
+      '& tbody tr': {
+        height: 'auto',
+        display: 'block',
+        marginBottom: '.625em',
+        '& td': {
+          display: 'block',
+          textAlign: 'right',
+          paddingRight: '24px'
+        }
+      },
+      '& tbody tr td:before': {
+        content: 'attr(data-label)',
+        paddingRight: '24px',
+        float: 'left'
+      },
+      '& tbody tr td:last-child': {
+        paddingRight: '24px'
+      }
+    }
   }
 };
 
