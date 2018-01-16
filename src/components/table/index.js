@@ -27,14 +27,9 @@ const styles = {
     '& tbody': {
       display: 'block',
       height: '500px',
-      overflowY: 'auto',
-      '& tr': {
-        display: 'table',
-        width: '100%',
-        tableLayout: 'fixed'
-      }
+      overflowY: 'auto'
     },
-    '& thead, & tfoot': {
+    '& tbody tr, & thead, & tfoot': {
       display: 'table',
       width: '100%',
       tableLayout: 'fixed'
