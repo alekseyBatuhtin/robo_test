@@ -13,22 +13,26 @@ const enhance = withStyles(styles);
 
 const BaseTableBody = ({ data = [], classes }) => (
   <TableBody className={classes.tableBody}>
-    {data.map((n, index) => (
-      <TableRow
-        hover={true}
-        key={index}
-        className={classes.root}
-        onClick={() => {
-          console.log(n.title);
-        }}
-      >
-        <TableCell>{n.title}</TableCell>
-        <TableCell>{n.subtitle || '-'}</TableCell>
-        <TableCell>{(n.authors && n.authors.join(', ')) || '-'}</TableCell>
-        <TableCell>{n.publishedDate}</TableCell>
-        <TableCell>{n.language}</TableCell>
+    {(data.length &&
+      data.map((n, index) => (
+        <TableRow
+          hover={true}
+          key={index}
+          className={classes.root}
+          onClick={() => {
+            console.log(n.title);
+          }}
+        >
+          <TableCell space="row">{n.title}</TableCell>
+          <TableCell>{(n.authors && n.authors.join(', ')) || '-'}</TableCell>
+          <TableCell>{n.publishedDate}</TableCell>
+          <TableCell>{n.language}</TableCell>
+        </TableRow>
+      ))) || (
+      <TableRow>
+        <TableCell>{'Empty'}</TableCell>
       </TableRow>
-    ))}
+    )}
   </TableBody>
 );
 
