@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { compose, withState } from 'recompose';
 import { connect } from 'react-redux';
-import { Table, Paper, withStyles } from 'material-ui';
+import { Table, withStyles } from 'material-ui';
 
 import Head from './head';
 import Body from './body';
@@ -17,16 +17,23 @@ const mapStateToPRops = ({ book, book: { totalBooks } }) => ({ data: book.data.m
 const mapDisaptchToProps = { getBookList, getSuggestions };
 
 const styles = {
+  wrap: {
+    height: '100%',
+    padding: '0 20px',
+    display: 'flex',
+    flexDirection: 'column'
+  },
   table: {
     width: '100%',
-    height: '100%',
-    display: 'block',
+    flexBasis: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     tableLayout: 'fixed',
     borderCollapse: 'collapse',
     position: 'relative',
     '& tbody': {
       display: 'block',
-      height: '500px',
+      flexBasis: '100%',
       overflowY: 'auto'
     },
     '& tbody tr, & thead, & tfoot': {
@@ -36,6 +43,9 @@ const styles = {
     }
   },
   '@media (max-width: 680px)': {
+    wrap: {
+      padding: 0
+    },
     table: {
       '& thead': {
         border: 'none',
@@ -60,7 +70,8 @@ const styles = {
       '& tbody tr td:before': {
         content: 'attr(data-label)',
         paddingRight: '24px',
-        float: 'left'
+        float: 'left',
+        color: 'rgba(0, 0, 0, 0.54)'
       },
       '& tbody tr td:last-child': {
         paddingRight: '24px'
@@ -76,14 +87,14 @@ const enhance = compose(
 );
 
 const BaseTable = ({ data, query, setQuery, totalBooks, classes }) => (
-  <Paper>
+  <div className={classes.wrap}>
     <SearchBar value={query} setValue={setQuery} />
     <Table className={classes.table}>
       <Head />
       <Body data={data} />
       <Footer count={totalBooks} query={query} />
     </Table>
-  </Paper>
+  </div>
 );
 
 BaseTable.propTypes = {

@@ -7,15 +7,30 @@ const styles = {
   root: {
     cursor: 'pointer'
   },
+  body: {
+    position: 'relative'
+  },
   date: {
     whiteSpace: 'nowrap'
+  },
+  emptyRow: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  emptyCell: {
+    textAlign: 'center !important',
+    fontSize: '1.5em',
+    textTransform: 'uppercase',
+    border: 0
   }
 };
 
 const enhance = withStyles(styles);
 
 const BaseTableBody = ({ data = [], classes }) => (
-  <TableBody>
+  <TableBody className={classes.body}>
     {(data.length &&
       data.map((n, index) => (
         <TableRow
@@ -36,8 +51,8 @@ const BaseTableBody = ({ data = [], classes }) => (
           <TableCell data-label="Language">{n.language}</TableCell>
         </TableRow>
       ))) || (
-      <TableRow>
-        <TableCell>{'Empty'}</TableCell>
+      <TableRow className={classes.emptyRow}>
+        <TableCell className={classes.emptyCell}>{'Empty'}</TableCell>
       </TableRow>
     )}
   </TableBody>

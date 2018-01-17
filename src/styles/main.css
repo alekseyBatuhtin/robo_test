@@ -1,9 +1,11 @@
 
-html, body {
-    font-size: 14px;
+html, body, #root {
     height: 100%;
 }
 
+html, body {
+    font-size: 16px;
+}
 body {
     font-family: "Roboto", sans;
     box-sizing: border-box;
