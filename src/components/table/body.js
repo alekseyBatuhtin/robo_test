@@ -29,24 +29,17 @@ const styles = {
 
 const enhance = withStyles(styles);
 
-const BaseTableBody = ({ data = [], classes }) => (
+const BaseTableBody = ({ data = [], classes, handleOpenOverlay }) => (
   <TableBody className={classes.body}>
     {(data.length &&
       data.map((n, index) => (
-        <TableRow
-          hover={true}
-          key={index}
-          className={classes.root}
-          onClick={() => {
-            console.log(n.title);
-          }}
-        >
+        <TableRow hover={true} key={index} className={classes.root} onClick={handleOpenOverlay}>
           <TableCell data-label="Title" space="row">
             {n.title}
           </TableCell>
           <TableCell data-label="Author">{(n.authors && n.authors.join(', ')) || '-'}</TableCell>
           <TableCell data-label="Publish Date" className={classes.date}>
-            {n.publishedDate}
+            {n.publishedDate || '-'}
           </TableCell>
           <TableCell data-label="Language">{n.language}</TableCell>
         </TableRow>

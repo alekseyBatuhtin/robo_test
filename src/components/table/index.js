@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { compose, withState } from 'recompose';
+import { compose, withState, withStateHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { Table, withStyles } from 'material-ui';
+import { grey } from 'material-ui/colors';
 
+import SearchBar from '../search-bar';
 import Head from './head';
 import Body from './body';
 import Footer from './footer';
-import SearchBar from '../search-bar';
+import Overlay from '../overlay';
 
 import { getBookList } from '../../modules/book/actions';
 import { getSuggestions } from '../../modules/suggestions/actions';
@@ -31,6 +33,7 @@ const styles = {
     tableLayout: 'fixed',
     borderCollapse: 'collapse',
     position: 'relative',
+    backgroundColor: grey[50],
     '& tbody': {
       display: 'block',
       flexBasis: '100%',
@@ -83,17 +86,34 @@ const styles = {
 const enhance = compose(
   connect(mapStateToPRops, mapDisaptchToProps),
   withState('query', 'setQuery', ''),
+  withStateHandlers(
+    { openOverlay: false },
+    {
+      handleOpenOverlay: () => () => ({ openOverlay: true }),
+      handleCloseOverlay: () => () => ({ openOverlay: false })
+    }
+  ),
   withStyles(styles)
 );
 
-const BaseTable = ({ data, query, setQuery, totalBooks, classes }) => (
+const BaseTable = ({
+  data,
+  query,
+  setQuery,
+  totalBooks,
+  classes,
+  openOverlay,
+  handleOpenOverlay,
+  handleCloseOverlay
+}) => (
   <div className={classes.wrap}>
     <SearchBar value={query} setValue={setQuery} />
     <Table className={classes.table}>
       <Head />
-      <Body data={data} />
+      <Body data={data} handleOpenOverlay={handleOpenOverlay} />
       <Footer count={totalBooks} query={query} />
     </Table>
+    <Overlay open={openOverlay} handleCloseOverlay={handleCloseOverlay} />
   </div>
 );
 
