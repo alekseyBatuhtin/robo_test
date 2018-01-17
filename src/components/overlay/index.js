@@ -1,9 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Dialog, Slide, AppBar, Toolbar, Typography, IconButton } from 'material-ui';
+import { Dialog, Slide, AppBar, Toolbar, Typography, IconButton, withStyles } from 'material-ui';
+import List from './list';
 
-const Overlay = ({ open, handleCloseOverlay }) => (
+const styles = {
+  content: {
+    marginTop: '80px',
+    display: 'flex'
+  },
+  image: {
+    height: 'auto'
+  }
+};
+const enhance = withStyles(styles);
+
+const Overlay = ({ open, handleCloseOverlay, singleBook, classes }) => (
   <Dialog fullScreen={true} open={open} onClose={handleCloseOverlay} transition={Transition}>
     <AppBar>
       <Toolbar>
@@ -15,11 +27,16 @@ const Overlay = ({ open, handleCloseOverlay }) => (
         </Typography>
       </Toolbar>
     </AppBar>
-    <p>{'Overlay'}</p>
+    <div className={classes.content}>
+      <a href={singleBook && singleBook.infoLink} target="_blank">
+        <img src={(singleBook && singleBook.imageLinks && singleBook.imageLinks.thumbnail) || ''} alt="Preview" />
+      </a>
+      <List data={singleBook} />
+    </div>
   </Dialog>
 );
 
-export default Overlay;
+export default enhance(Overlay);
 
 function Transition(props) {
   return <Slide direction="left" {...props} />;

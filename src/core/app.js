@@ -8,6 +8,7 @@ import routes from './routes';
 import configureStore from '../modules/configure-store';
 
 import 'typeface-roboto';
+import 'normalize.css';
 import '../styles/main.css';
 
 const { store, history } = configureStore();

@@ -33,7 +33,13 @@ const BaseTableBody = ({ data = [], classes, handleOpenOverlay }) => (
   <TableBody className={classes.body}>
     {(data.length &&
       data.map((n, index) => (
-        <TableRow hover={true} key={index} className={classes.root} onClick={handleOpenOverlay}>
+        <TableRow
+          hover={true}
+          key={index}
+          className={classes.root}
+          onClick={event => handleOpenOverlay(event, n.id)}
+          data-id-row={n.id}
+        >
           <TableCell data-label="Title" space="row">
             {n.title}
           </TableCell>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { compose, withState, withStateHandlers } from 'recompose';
+import { compose, withState, withStateHandlers, withProps } from 'recompose';
 import { connect } from 'react-redux';
 import { Table, withStyles } from 'material-ui';
 import { grey } from 'material-ui/colors';
@@ -15,7 +15,10 @@ import Overlay from '../overlay';
 import { getBookList } from '../../modules/book/actions';
 import { getSuggestions } from '../../modules/suggestions/actions';
 
-const mapStateToPRops = ({ book, book: { totalBooks } }) => ({ data: book.data.map(_ => _.volumeInfo), totalBooks });
+const mapStateToPRops = ({ book, book: { totalBooks } }) => ({
+  data: book.data.map(_ => ({ ..._.volumeInfo, id: _.id })),
+  totalBooks
+});
 const mapDisaptchToProps = { getBookList, getSuggestions };
 
 const styles = {
@@ -85,14 +88,15 @@ const styles = {
 
 const enhance = compose(
   connect(mapStateToPRops, mapDisaptchToProps),
-  withState('query', 'setQuery', ''),
   withStateHandlers(
-    { openOverlay: false },
+    { openOverlay: false, bookId: null },
     {
-      handleOpenOverlay: () => () => ({ openOverlay: true }),
-      handleCloseOverlay: () => () => ({ openOverlay: false })
+      handleOpenOverlay: () => (event, id) => ({ openOverlay: true, bookId: id }),
+      handleCloseOverlay: () => () => ({ openOverlay: false, bookId: null })
     }
   ),
+  withProps(({ data, bookId }) => ({ singleBook: bookId ? data.find(book => book.id === bookId) : {} })),
+  withState('query', 'setQuery', ''),
   withStyles(styles)
 );
 
@@ -101,7 +105,9 @@ const BaseTable = ({
   query,
   setQuery,
   totalBooks,
+  bookId,
   classes,
+  singleBook,
   openOverlay,
   handleOpenOverlay,
   handleCloseOverlay
@@ -113,7 +119,7 @@ const BaseTable = ({
       <Body data={data} handleOpenOverlay={handleOpenOverlay} />
       <Footer count={totalBooks} query={query} />
     </Table>
-    <Overlay open={openOverlay} handleCloseOverlay={handleCloseOverlay} />
+    <Overlay open={openOverlay} handleCloseOverlay={handleCloseOverlay} singleBook={singleBook} />
   </div>
 );
 
