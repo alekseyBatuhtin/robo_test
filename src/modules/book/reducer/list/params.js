@@ -1,4 +1,3 @@
-import { keyBy } from 'lodash/fp';
 import { GET_BOOK_LIST_SUCCESS } from '../actions';
 import { createReducer } from '../../utils';
 

@@ -16,19 +16,25 @@ body {
 }
 
 a {
-    color: #827ca1;
+    display: block;
+    color: #ececec;
+    text-decoration: none;
     -webkit-transition: all 0.05s ease-in-out;
     -o-transition: all 0.05s ease-in-out;
     transition: all 0.05s ease-in-out;
 }
 
 a:hover, a:focus {
-    color: #0088ff;
+    color: #bebdc2;;
     text-decoration: none;
     -webkit-transition: all 0.05s ease-in-out;
     -o-transition: all 0.05s ease-in-out;
     transition: all 0.05s ease-in-out;
 }
+ul {
+    list-style-type: none;
+}
+
 ul, li {
     margin: 0;
     padding: 0;

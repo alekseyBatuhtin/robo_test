@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Dialog, Slide, AppBar, Toolbar, Typography, IconButton, withStyles } from 'material-ui';
+import { compose, withProps } from 'recompose';
+
 import List from './list';
+
+import parse from './utils';
 
 const styles = {
   content: {
@@ -10,12 +14,45 @@ const styles = {
     display: 'flex'
   },
   image: {
-    height: 'auto'
+    minWidth: '128px'
+  },
+  '@media (max-width: 680px)': {
+    content: {
+      flexDirection: 'column',
+      '& a': {
+        margin: '0 auto'
+      }
+    }
   }
 };
-const enhance = withStyles(styles);
+const enhance = compose(
+  withProps(({ singleBook }) => {
+    const parseMask = [
+      'title',
+      'subtitle',
+      'authors',
+      'description',
+      'publisher',
+      'publishedDate',
+      'categories',
+      'printType',
+      'language',
+      'pageCount',
+      'industryIdentifiers'
+    ];
 
-const Overlay = ({ open, handleCloseOverlay, singleBook, classes }) => (
+    return {
+      infoLink: singleBook.infoLink,
+      imageLinks: singleBook.imageLinks,
+      saleInfo: singleBook.saleInfo,
+      previewLink: singleBook.previewLink,
+      singleBook: parse(singleBook, parseMask)
+    };
+  }),
+  withStyles(styles)
+);
+
+const Overlay = ({ open, handleCloseOverlay, singleBook, saleInfo, infoLink, previewLink, imageLinks, classes }) => (
   <Dialog fullScreen={true} open={open} onClose={handleCloseOverlay} transition={Transition}>
     <AppBar>
       <Toolbar>
@@ -28,10 +65,10 @@ const Overlay = ({ open, handleCloseOverlay, singleBook, classes }) => (
       </Toolbar>
     </AppBar>
     <div className={classes.content}>
-      <a href={singleBook && singleBook.infoLink} target="_blank">
-        <img src={(singleBook && singleBook.imageLinks && singleBook.imageLinks.thumbnail) || ''} alt="Preview" />
+      <a href={infoLink} target="_blank">
+        <img src={(imageLinks && imageLinks.thumbnail) || ''} alt="Preview" />
       </a>
-      <List data={singleBook} />
+      <List data={singleBook} saleInfo={saleInfo} previewLink={previewLink} />
     </div>
   </Dialog>
 );

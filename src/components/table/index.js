@@ -16,7 +16,7 @@ import { getBookList } from '../../modules/book/actions';
 import { getSuggestions } from '../../modules/suggestions/actions';
 
 const mapStateToPRops = ({ book, book: { totalBooks } }) => ({
-  data: book.data.map(_ => ({ ..._.volumeInfo, id: _.id })),
+  data: book.data.map(_ => ({ ..._.volumeInfo, id: _.id, saleInfo: _.saleInfo })),
   totalBooks
 });
 const mapDisaptchToProps = { getBookList, getSuggestions };
