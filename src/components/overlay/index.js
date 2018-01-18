@@ -11,7 +11,8 @@ import parse from './utils';
 const styles = {
   content: {
     marginTop: '80px',
-    display: 'flex'
+    display: 'flex',
+    padding: '0 20px'
   },
   image: {
     minWidth: '128px'
@@ -19,6 +20,7 @@ const styles = {
   '@media (max-width: 680px)': {
     content: {
       flexDirection: 'column',
+      padding: 0,
       '& a': {
         margin: '0 auto'
       }
