@@ -18,7 +18,10 @@ import { Suggestion, SuggestionContainer } from './suggestion';
 
 const styles = theme => ({
   form: {
-    display: 'flex'
+    display: 'flex',
+    width: '100%',
+    maxWidth: '650px',
+    marginBottom: '10px'
   },
   container: {
     flexGrow: 1,
