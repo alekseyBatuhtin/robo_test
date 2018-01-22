@@ -4,7 +4,7 @@ module.exports = {
   "env": {
     "browser": true
   },
-  "extends": "react-app",
+  "extends": ["react-app", "plugin:ramda/recommended"],
   "globals": {
     "Map": true,
     "Promise": true,
@@ -16,6 +16,7 @@ module.exports = {
   },
   "plugins": [
     "react",
+    "ramda",
     "lodash",
     "prettier"
   ],

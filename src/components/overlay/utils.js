@@ -1,4 +1,4 @@
-import { flow, pick } from 'lodash/fp';
+import { compose, pick } from 'ramda';
 
 const parseToString = obj =>
   Object.keys(obj).reduce((acc, key) => {
@@ -12,6 +12,6 @@ const parseToString = obj =>
     return acc;
   }, {});
 
-const parse = (obj, mask) => flow(pick(mask), parseToString)(obj);
+const parse = (obj, mask) => compose(parseToString, pick(mask))(obj);
 
 export default parse;
