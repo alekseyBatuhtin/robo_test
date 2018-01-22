@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Table from '../components/table';
+import Table from '../table';
 
 const Shell = () => <Table />;
 

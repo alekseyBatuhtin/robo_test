@@ -1,4 +1,4 @@
-import Shell from '../shell';
+import Shell from '../components/shell';
 
 const authRoutes = [];
 
