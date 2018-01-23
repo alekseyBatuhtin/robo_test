@@ -13,7 +13,8 @@ import { getSuggestions, clearSuggestions } from '../../modules/suggestions/acti
 import { getBookList } from '../../modules/book/actions';
 
 import Input from './input';
-import { Button } from 'material-ui';
+import { IconButton } from 'material-ui';
+import Search from 'material-ui-icons/Search';
 import { Suggestion, SuggestionContainer } from './suggestion';
 
 const styles = theme => ({
@@ -108,9 +109,9 @@ const SearchBar = props => {
           onChange: handleChange
         }}
       />
-      <Button type="submit" raised color="primary">
-        {'Find'}
-      </Button>
+      <IconButton type="submit" color="primary">
+        <Search />
+      </IconButton>
     </form>
   );
 };
