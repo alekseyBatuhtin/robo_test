@@ -20,7 +20,7 @@ const RestClient = () => {
     let req = {};
     switchFn({
       [GET_BOOK_LIST]() {
-        url = `/books/v1/volumes/?q=${query}&maxResults=20&startIndex=${page}`;
+        url = `/books/v1/volumes/?q=${query}&maxResults=10&startIndex=${(page - 1) * 10}`;
         req = request(url, true);
       },
 
