@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Dialog, Slide, AppBar, Toolbar, Typography, IconButton, withStyles } from 'material-ui';
+import Close from 'material-ui-icons/Close';
 import { compose, withProps } from 'recompose';
 
 import List from './list';
@@ -59,7 +60,7 @@ const Overlay = ({ open, handleCloseOverlay, singleBook, saleInfo, infoLink, pre
     <AppBar>
       <Toolbar>
         <IconButton color="contrast" onClick={handleCloseOverlay} aria-label="Close">
-          {'X'}
+          <Close />
         </IconButton>
         <Typography type="title" color="inherit">
           {'Info'}
