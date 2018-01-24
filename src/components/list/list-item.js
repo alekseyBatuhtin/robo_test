@@ -15,10 +15,9 @@ const styles = {
     display: 'flex',
     maxHeight: '250px'
   },
-  imgBookBlock: {
+  image: {
     width: '128px'
   },
-  image: { width: '128px' },
   description: {
     maxHeight: '180px',
     overflow: 'hidden',
@@ -32,11 +31,8 @@ const styles = {
     '& p': { margin: '0 10px 0 0' }
   },
   '@media (max-width: 420px)': {
-    imgBookBlock: {
-      width: '80px'
-    },
     image: {
-      width: '80px'
+      width: '64px'
     },
     infoBook: {
       fontSize: '.7em'
@@ -46,27 +42,22 @@ const styles = {
 
 const enhance = withStyles(styles);
 
-const ListItem = ({ classes, item, handleOpenOverlay }) => {
-  console.log(item);
-  return (
-    <li className={classes.item}>
-      <h3 onClick={event => handleOpenOverlay(event, item.id)}>{item.title}</h3>
-      <div className={classes.content}>
-        <div className={classes.imgBookBlock}>
-          <a href={item.infoLink} target="_blank">
-            <img className={classes.image} src={(item.imageLinks && item.imageLinks.thumbnail) || ''} alt="Preview" />
-          </a>
+const ListItem = ({ classes, item, handleOpenOverlay }) => (
+  <li className={classes.item}>
+    <h3 onClick={event => handleOpenOverlay(event, item.id)}>{item.title}</h3>
+    <div className={classes.content}>
+      <a href={item.infoLink} target="_blank">
+        <img className={classes.image} src={(item.imageLinks && item.imageLinks.thumbnail) || ''} alt="Preview" />
+      </a>
+      <div className={classes.infoBook}>
+        <div className={classes.commonInfo}>
+          <p>{(item.authors && item.authors[0]) || null}</p>
+          <p>{(item.publishedDate && item.publishedDate.split('-')[0]) || null}</p>
         </div>
-        <div className={classes.infoBook}>
-          <div className={classes.commonInfo}>
-            <p>{(item.authors && item.authors[0]) || null}</p>
-            <p>{(item.publishedDate && item.publishedDate.split('-')[0]) || null}</p>
-          </div>
-          <p className={classes.description}>{item.description || null}</p>
-        </div>
+        <p className={classes.description}>{item.description || null}</p>
       </div>
-    </li>
-  );
-};
+    </div>
+  </li>
+);
 
 export default enhance(ListItem);
