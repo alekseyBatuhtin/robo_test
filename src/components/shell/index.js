@@ -3,7 +3,7 @@ import React from 'react';
 import List from '../list';
 import SearchBar from '../search-bar';
 import Overlay from '../overlay';
-//import Pagination from '../pagination' @@TODO: custom pagination
+import Pagination from '../pagination';
 
 import { compose, withState, withStateHandlers, withProps } from 'recompose';
 import { connect } from 'react-redux';
@@ -16,6 +16,9 @@ const styles = {
   wrap: {
     height: '100%',
     padding: '0 20px'
+  },
+  '@media (max-width: 420px)': {
+    wrap: { padding: '0 5px' }
   }
 };
 
@@ -54,7 +57,7 @@ const Shell = ({
   <div className={classes.wrap}>
     <SearchBar value={query} setValue={setQuery} />
     <List data={data} handleOpenOverlay={handleOpenOverlay} />
-    {/* <Pagination /> */}
+    {totalBooks ? <Pagination query={query} count={totalBooks} /> : null}
     <Overlay open={openOverlay} handleCloseOverlay={handleCloseOverlay} singleBook={singleBook} />
   </div>
 );
